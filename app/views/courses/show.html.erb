@@ -11,7 +11,7 @@
     <% if current_user && current_user == @course.user %>
       <br />
       <br />
-      <%= link_to 'Admin', instructor_course_path(@course), class: 'btn btn-danger btn-large' %>
+      <%= link_to 'Course Settings', instructor_course_path(@course), class: 'btn btn-danger btn-large' %>
     <% end %>
   </div>
 
