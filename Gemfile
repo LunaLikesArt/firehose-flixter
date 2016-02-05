@@ -43,6 +43,8 @@ gem "figaro"
 
 gem "fog", "~> 1.3.1"
 
+gem "bugsnag"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -33,6 +33,8 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bugsnag (3.0.0)
+      json (~> 1.7, >= 1.7.7)
     builder (3.1.4)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -158,6 +160,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.5.1)
+  bugsnag
   carrierwave
   coffee-rails (~> 4.0.0)
   devise (>= 3.2.4)
