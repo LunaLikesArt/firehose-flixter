@@ -45,6 +45,8 @@ gem "fog", "~> 1.3.1"
 
 gem "bugsnag"
 
+gem 'mini_magick', '~> 4.3.1'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
