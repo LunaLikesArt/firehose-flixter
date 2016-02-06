@@ -1,54 +1,63 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
-<br />
-
-
-<div class="row">
-  <div class="col-xs-12 col-offset-1 text-center">
-    <h1><%= @course.title %></h1>
-    <%= image_tag @course.image, class: 'img-responsive' %>
-    <br />
+  <br />
+  
+  
+  <div class="row">
+    <div class="col-xs-12 col-offset-1 text-center">
+      <h1><%= @course.title %></h1>
+      <%= image_tag @course.image, class: 'img-responsive' %>
+      <br />
+    </div>
   </div>
-</div>
-
-
-
+  
+  
   <div class="row">
     <div class="col-xs-offset-1 text-center">
       <span class="label label-default">
-        <%= number_to_currency @course.cost || 0 %>
+        <%= number_to_currency @course.price_checker %>
       </span>
     </div>
   </div>
-
-    <br />
-
+  
+  <br />
+  
   <div class="row">
     <div class="col-xs-offset-1 text-center">
-    <%= @course.description %>
+      <%= @course.description %>
     </div>
   </div>
-
+  
   <div class="row">
     <div class="col-xs-12">
       <% @course.sections.each do |section| %>
-        <div class="section">
+      <br />
+      <div class="section">
+        <h3>
           <%= section.title %>
-          <% section.lessons.each do |lesson| %>
-            <div class="lesson">
-            <%= link_to lesson_path(lesson) do %>
-              <b><%= lesson.title %></b>
-              -
-              <%= lesson.subtitle %>
-            <% end %>
-              </div>
+        </h3>
+        <br />
+        <% section.lessons.each do |lesson| %>
+        <div class="col-xs-12 col-sm-6">
+          <div class="lesson text-center">
             <br />
-          <% end %>
+            <%= link_to lesson_path(lesson) do %>
+            <b><%= lesson.title %></b>
+            <br />
+            <%= lesson.subtitle %>
+            <br />
+            <br />
+            <% end %>
+          </div>
         </div>
+        <% end %>
+        <br class="clr" />
+      </div>
       <% end %>
     </div>
   </div>
-
-
+  
+  
+  
   <div class="row">
     <div class="col-xs-12 text-right">
       <% if current_user && current_user == @course.user %>
@@ -58,5 +67,5 @@
       <% end %>
     </div>
   </div>
-
+  
 </div>

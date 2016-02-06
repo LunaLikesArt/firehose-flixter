@@ -3,7 +3,7 @@
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
   box-shadow: 0px 1px 3px #2a2a2a;
-  }
+}
 
 .navbar a.navbar-brand {
   font-family: 'Raleway', sans-serif;
@@ -16,12 +16,12 @@ h1, h2, h3, h4, h5, h6, .navbar {
 }
 
 body {
-	background: #f8f8f8 no-repeat center center fixed; 
+  background: #f8f8f8 no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;;
-	font-family: 'Muli', sans-serif;
+  font-family: 'Muli', sans-serif;
 }
 
 .hero {
@@ -90,4 +90,28 @@ body {
   padding-left: 20px;
   padding-top: 20px;
   padding-bottom: 10px;
+}
+
+.lesson {
+  background-color: #585858;
+  margin-top:10px;
+}
+
+.section {
+  border: 1px solid;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding: 20px;
+}
+
+.lesson a {
+  color:white;
+  font-family: "Helvetica Neue",Helvetica;
+  font-weight:100;
+  font-size: 15px;
+}
+
+
+.lesson a b {
+  font-weight: 100;
+  font-size:25px;
 }
