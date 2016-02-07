@@ -66,7 +66,7 @@
         <%= link_to 'Course Settings', instructor_course_path(@course), class: 'btn btn-danger btn-sm' %>
       <% end %>
       <% if current_user && current_user.enrolled_in?(@course) %>
-        <h3 class="label label-success">Enrolled</h3>
+        <div class="label label-success">Enrolled</div>
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       <% else %>
         <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-success btn-sm', method: :post %>
