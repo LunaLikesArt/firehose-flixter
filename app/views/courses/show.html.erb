@@ -61,9 +61,11 @@
 
   <div class="row">
     <div class="col-xs-12 text-right">
+
+
       <% if current_user && current_user == @course.user %>
-      <br />
-      <br />
+        <br />
+        <br />
         <%= link_to 'Course Settings', instructor_course_path(@course), class: 'btn btn-danger btn-sm' %>
       <% end %>
 
@@ -74,12 +76,37 @@
         <% if @course.free? %>
           <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-success btn-sm', method: :post %>
         <% else %>
-          <%= form_tag course_enrollments_path(@course) do %>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="<%= @course.title %> (<%= number_to_currency @course.cost %>)"
-            data-amount=" <%= (@course.cost * 100).to_i %>"
-            data-locale="auto"></script>
+          <%= form_tag course_enrollments_path(@course), style: "display: inline" do %>
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+            <button class="btn btn-success btn-sm text-right" id="customButton">Enroll</button>
+
+            <script>
+              var handler = StripeCheckout.configure({
+                key: '<%= Rails.configuration.stripe[:publishable_key] %>',a
+                // image: '/img/documentation/checkout/marketplace.png',
+                locale: 'auto',
+                token: function(token) {
+                  // Use the token to create the charge with a server-side script.
+                  // You can access the token ID with `token.id`
+                }
+              });
+
+              $('#customButton').on('click', function(e) {
+                // Open Checkout with further options
+                handler.open({
+                  name: 'Demo Site',
+                  description: '<%= @course.title %> (<%= number_to_currency @course.cost %>)',
+                  amount: <%= (@course.cost * 100).to_i %>
+                });
+                e.preventDefault();
+              });
+
+              // Close Checkout on page navigation
+              $(window).on('popstate', function() {
+                handler.close();
+              });
+            </script>
+
           <% end %>
         <% end %>
       <% end %>
