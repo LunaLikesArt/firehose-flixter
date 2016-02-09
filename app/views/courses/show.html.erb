@@ -65,11 +65,22 @@
       <br />
         <%= link_to 'Course Settings', instructor_course_path(@course), class: 'btn btn-danger btn-sm' %>
       <% end %>
+
       <% if current_user && current_user.enrolled_in?(@course) %>
         <div class="label label-success">Enrolled</div>
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       <% else %>
-        <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-success btn-sm', method: :post %>
+        <% if @course.free? %>
+          <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-success btn-sm', method: :post %>
+        <% else %>
+          <%= form_tag course_enrollments_path(@course) do %>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="<%= @course.title %> (<%= number_to_currency @course.cost %>)"
+            data-amount=" <%= (@course.cost * 100).to_i %>"
+            data-locale="auto"></script>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>

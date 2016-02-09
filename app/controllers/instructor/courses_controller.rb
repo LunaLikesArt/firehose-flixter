@@ -1,5 +1,5 @@
 class Instructor::CoursesController < ApplicationController
-	before_action :authenticate_user! 
+	before_action :authenticate_user!
 	before_action :require_authorized_for_current_course, only: [:show]
 
 	def new
@@ -15,9 +15,6 @@ class Instructor::CoursesController < ApplicationController
     end
 	end
 
-	def show 
-	end
-
 	private
 
 	def require_authorized_for_current_course
@@ -28,7 +25,7 @@ class Instructor::CoursesController < ApplicationController
 
 
 	helper_method :current_course
-	def current_course 
+	def current_course
 		@current_course ||= Course.find(params[:id])
 	end
 
