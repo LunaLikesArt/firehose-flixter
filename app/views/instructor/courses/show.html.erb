@@ -30,50 +30,61 @@ $(function() {
 </script>
 
 
-
-<br />
-
 <div class="booyah-box col-xs-10 col-xs-offset-1">
-  <h1><%= current_course.title %></h1>
-  <%= image_tag current_course.image, class: 'img-responsive' %>
-
   <br />
 
-  <%= link_to 'Preview course', course_path(current_course), class: 'btn btn-warning btn-xs pull-right' %>
-
-  <div class="text-left">
-    <%= link_to 'Add new section', new_instructor_course_section_path(current_course), class: 'btn btn-danger btn-xs pull-right' %>
+<div class="row">
+  <div class="col-xs-12 col-offset-1 text-center">
+    <h1><%= current_course.title %></h1>
+    <%= image_tag current_course.image, class: 'img-responsive' %>
+    <br />
   </div>
+</div>
 
   <br />
+
   <ul class="sections">
     <% current_course.sections.rank(:row_order).each do |section| %>
-    <li data-secupdate-url="<%= instructor_section_path(section) %>" class="section-li">
+    <li data-update-url="<%= instructor_section_path(section) %>" class="section-li">
       <div class="header">
         <span class="glyphicon glyphicon-option-vertical"></span>
         <%= section.title %>
       </div>
+
 
       <ul class="lessons">
         <% section.lessons.rank(:row_order).each do |lesson| %>
         <li data-update-url="<%= instructor_lesson_path(lesson) %>">
           <div class="col-xs-1">
 
-            <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+            <span class="glyphicon glyphicon-chevron-down"></span>
           </div>
           <div class="col-xs-11 text-center">
             <p>
               <b><%= lesson.title %></b>
-            <p>
-              <%= lesson.subtitle %>
-          </div>
+              <p>
+                <%= lesson.subtitle %>
+              </div>
+              <br class="clr" />
+            </li>
+            <% end %>
+            <br />
+            <%= link_to 'Add Lesson', new_instructor_section_lesson_path(section), class: 'pull-right btn btn-primary btn-xs' %>
+          </ul>
           <br class="clr" />
         </li>
         <% end %>
-        <%= link_to 'Add new lesson', new_instructor_section_lesson_path(section), class: 'pull-right btn btn-primary btn-xs' %>
       </ul>
-      <br class="clr" />
-    </li>
-    <% end %>
-  </ul>
-</div>
+
+      <br />
+      <br />
+
+      <div class="row">
+        <div class="col-xs-12 text-right">
+          <%= link_to 'Add Section', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Preview Course', course_path(current_course), class: 'btn btn-success btn-sm' %>
+          <br />
+        </div>
+      </div>
+
+    </div>
