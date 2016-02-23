@@ -14,21 +14,22 @@
   </div>
   <br />
   <%= image_tag course.image, class: 'img-responsive' %>
-
+  <br />
   <div class="row">
     <div class="col-xs-12 text-right">
       <%= link_to "Course Info", course_path(course), class: 'btn btn-sm btn-success' %>
     </div>
   </div>
 
-  <br />
   <hr class="col-xs-8 col-xs-offset-2">
   <br class="clr" / >
   <br />
 
   <% end %>
 
+  <br />
   <h1>Teaching</h1>
+  <br />
   <br />
   <% current_user.courses.each do |course| %>
   <h3 class="text-center">
@@ -46,7 +47,6 @@
     </div>
   </div>
 
-  <br />
   <hr class="col-xs-8 col-xs-offset-2">
   <br class="clr" / >
   <br />
