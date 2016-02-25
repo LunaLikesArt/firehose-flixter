@@ -6,7 +6,7 @@
 
   <% @courses.each do |course| %>
     <h2 class="text-center"><%= link_to course.title, course_path(course) %></h2>
-		<h6 class="text-center"><span class="label label-default"><%= number_to_currency course.cost %></span></h6>
+		<h6 class="text-center"><span class="label label-default"><%= number_to_currency course.price_checker %></span></h6>
 		<br />
 		<%= image_tag course.image, class: 'img-responsive' %>
 		<br />
