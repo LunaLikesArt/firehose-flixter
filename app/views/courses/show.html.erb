@@ -79,7 +79,6 @@
           <%= form_tag course_enrollments_path(@course), style: "display: inline" do %>
             <script src="https://checkout.stripe.com/checkout.js"></script>
             <button class="btn btn-success btn-sm text-right" id="customButton">Enroll</button>
-
             <script>
               var handler = StripeCheckout.configure({
                 key: '<%= Rails.configuration.stripe[:publishable_key] %>',
@@ -94,8 +93,8 @@
               $('#customButton').on('click', function(e) {
                 // Open Checkout with further options
                 handler.open({
-                  name: 'Demo Site',
-                  description: '<%= @course.title %> (<%= number_to_currency @course.cost %>)',
+                  name: '<%= @course.title %>',
+                  description: '<%= number_to_currency @course.cost %>',
                   amount: <%= (@course.cost * 100).to_i %>
                 });
                 e.preventDefault();
