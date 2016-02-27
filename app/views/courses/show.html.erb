@@ -78,15 +78,18 @@
         <% else %>
           <%= form_tag course_enrollments_path(@course), style: "display: inline" do %>
             <script src="https://checkout.stripe.com/checkout.js"></script>
+            <%= hidden_field_tag 'stripeToken' %>
             <button class="btn btn-success btn-sm text-right" id="customButton">Enroll</button>
+
             <script>
               var handler = StripeCheckout.configure({
                 key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-                // image: '/img/documentation/checkout/marketplace.png',
                 locale: 'auto',
                 token: function(token) {
-                  // Use the token to create the charge with a server-side script.
-                  // You can access the token ID with `token.id`
+
+                  $('#customButton').prop('disabled', true);
+                  var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                  $("form").append(tokenInput).submit();
                 }
               });
 
