@@ -75,7 +75,7 @@
 
 
 	     <% if current_user == nil %>
-        <div class="label label-success">Want to enroll? Sign up first</div>
+        <div class="label label-success">Want to enroll? Sign up first.</div>
       <% elsif current_user && current_user.enrolled_in?(@course) %>
         <div class="label label-success">Enrolled</div>
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
